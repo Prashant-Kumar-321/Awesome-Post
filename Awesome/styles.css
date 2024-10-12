@@ -656,6 +656,10 @@ video {
   height: 2.5rem;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .h-20 {
   height: 5rem;
 }
@@ -678,6 +682,10 @@ video {
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-40 {
@@ -755,6 +763,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .justify-between {
@@ -1028,6 +1040,22 @@ video {
   padding-bottom: 1rem;
 }
 
+.navlist>li>a {
+  border-radius: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navlist>li>a:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
 .font-family{
   font-family: "Lobster", sans-serif
 }
@@ -1060,13 +1088,6 @@ video {
   background-color: rgb(224 231 255 / var(--tw-bg-opacity)) !important;
 }
 
-/* h1{
-    font-size: 4rem !important;
-    line-height: 1.2 !important;
-    font-weight: bold !important; 
-    margin-bottom: 1rem !important; 
-} */
-
 h2{
   font-size: 1.5rem !important;
   font-weight: bold !important;
@@ -1079,6 +1100,11 @@ h2{
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
 .hover\:font-normal:hover {
   font-weight: 400;
 }
@@ -1087,35 +1113,24 @@ h2{
   text-decoration-line: underline;
 }
 
-.\[\&\>li\>a\:hover\]\:rounded-lg>li>a:hover {
-  border-radius: 0.5rem;
-}
+@media (min-width: 768px) {
+  .md\:\!block {
+    display: block !important;
+  }
 
-.\[\&\>li\>a\:hover\]\:bg-gray-700>li>a:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
 }
 
 .\[\&\>li\>a\]\:justify-end>li>a {
   justify-content: flex-end;
-}
-
-.\[\&\>li\>a\]\:px-4>li>a {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.\[\&\>li\>a\]\:py-3>li>a {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
-.\[\&\>li\>a\]\:transition-all>li>a {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.\[\&\>li\>a\]\:ease-in-out>li>a {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

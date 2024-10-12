@@ -2,6 +2,7 @@
 @tailwind components; 
 @tailwind utilities; 
 
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 /* My Custom CSS */
 
@@ -51,6 +52,15 @@
     padding-bottom: 1rem; 
 }
 
+.navlist>li>a{
+    @apply px-4 py-3 transition-all ease-in-out duration-300 hover:bg-gray-700 rounded-lg; 
+}
+
+.navlist>li>div{
+    @apply px-4 py-3 transition-all ease-in-out duration-300 hover:bg-gray-700 rounded-lg; 
+}
+
+
 .font-family{
     font-family: "Lobster", sans-serif
 }
@@ -67,12 +77,6 @@
     @apply !bg-indigo-100; 
 }
 
-/* h1{
-    font-size: 4rem !important;
-    line-height: 1.2 !important;
-    font-weight: bold !important; 
-    margin-bottom: 1rem !important; 
-} */
 
 h2{
     font-size: 1.5rem !important; 
