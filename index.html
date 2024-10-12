@@ -18,84 +18,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <style type="text/tailwindcss">
-        [x-cloak]{
-            display: none !important; 
-        }
 
-        :root{
-            --primary: rgb(88, 40, 244); 
-            --primary-hover: rgb(69, 29, 200);
-        }
+    <!--Link custom css -->
+    <link rel="stylesheet" href="./Awesome/styles.css">
 
-        h1{
-            font-size: 4rem;
-            line-height: 1.2;
-            font-weight: bold; 
-            margin-bottom: 1rem; 
-        }
 
-        h2{
-            font-size: 1.5rem; 
-            font-weight: bold;
-            line-height: 2rem; 
-            margin-bottom: 0.75rem; 
-        }
-
-        .button{
-            display: inline-flex;
-            flex-wrap: wrap; 
-            align-items: center; 
-            justify-content: center; 
-            flex-shrink: 0; 
-            text-align: center; 
-            border-radius: 0.5rem; 
-            cursor: pointer; 
-            padding: 0 1rem; 
-            min-height: 3.3rem; 
-            font-weight: 600; 
-            box-shadow: 0 4px 3px rgba(0,0,0,0.1); 
-            transition: transform 200ms ease-in-out; 
-            color: white; 
-            background-color: var(--primary); 
-        }
-        .button:hover{
-            background-color: var(--primary-hover)
-        }
-        .button:active{
-            transform: scale(0.95); 
-        }
-
-        .card {
-            display: flex; 
-            flex-direction: column; 
-            row-gap: 15px; 
-            overflow: hidden; 
-            position: relative; 
-            border-radius: 1rem; 
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            margin-bottom: 2rem; 
-            background-color: #fff; 
-            padding-bottom: 1rem; 
-        }
-
-        .font-family{
-            font-family: "Lobster", sans-serif
-        }
-
-        .hoverlist>*{
-            @apply hover:bg-gray-200 transition hover:rounded-md;
-        }
-
-        .hoverlist>*>a{
-            @apply p-2 flex flex-row gap-x-4 items-center; 
-        }
-
-        .highlight{
-            @apply !bg-indigo-100; 
-        }
-
-    </style>
 </head>
 <body class="bg-gray-100">
     <header class="flex items-center justify-between px-8 bg-gray-800 h-20 text-white">
@@ -142,9 +69,10 @@
     </header>
 
     <section aria-label="Hero Section" class="grid bg-gray-700 text-white text-center bg-[url('https://live.staticflickr.com/65535/49909538937_3255dcf9e7_b.jpg')] bg-no-repeat bg-cover bg-top">
+        <!--overlay element-->
         <div class="col-start-1 row-start-1 bg-gray-800 w-full h-full bg-opacity-50"></div>
         <div class="py-24 px-10 col-start-1 row-start-1">
-            <h1 class="lobester-family">Awesome Photos & Captions</h1>
+            <h1 class="lobester-family font-bold text-6xl mb-4">Awesome Photos & Captions</h1>
             <p class="text-lg font-bold mb-5">Share your favourite Photos from Flicker and add a great caption</p>
             <a class="button" href="#">Get Started</a>
         </div>
