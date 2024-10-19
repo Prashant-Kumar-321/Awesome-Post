@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "tailwind": "npx tailwindcss -i ../Awesome/input.css -o ./Awesome/styles.css --watch",
+    "production_tailwind": "npx tailwindcss -i ../Awesome/styles.css -o ./Awesome/build.css --minify # cmmnt: This is tailwind way",
+    "minify": "cleancss ./Awesome/styles.css -o ../Awesome/build.min.css # cmmnt: This is external plugin"
+  },
+  "dependencies": {
+    "clean-css-cli": "^5.6.3",
+    "tailwindcss": "^3.4.13"
+  }
+}
