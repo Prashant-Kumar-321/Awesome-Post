@@ -19,257 +19,385 @@
 
 
     <!--Link custom css -->
-    <!-- <link rel="stylesheet" href="./Awesome/styles.css"> -->
-     <link rel="stylesheet" href="./Awesome/build.css">
-
+     <!-- <link rel="stylesheet" href="./Awesome/build.css"> -->
+    <link rel="stylesheet" href="./tailwindcss/Awesome/styles.css">
 
 </head>
-<body class="bg-gray-100">
-    <header class="md:flex items-center justify-between [&>*]:px-8 bg-gray-800 h-20 text-white"
-        x-data="{mobilenavOpen: false}"    
+
+<body
+    x-data="{darkModeOn: false}"
+>
+    <div class="bg-gray-100 dark:bg-gray-800"
+        x-bind:class="darkModeOn && 'dark'"
     >
-        <div class="flex justify-between items-center h-20 select-none relative z-[3]">
-            <div aria-label="Website name and Logo">
-                <a class="flex items-center gap-1" href="#" >
-                    <img class="h-8 -mt-1" src="https://img.icons8.com/ios-glyphs/30/ffffff/fire-heart.png" alt="fire-heart"/>
-                    <span>Awesome</span>
-                </a>
-            </div>
-    
-            <div arial-label="Mobile Icon" class="md:hidden"
-            @click="mobilenavOpen = !mobilenavOpen"
-            >
-                <a href="#" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg">
-                    <img x-show="!mobilenavOpen" x-cloak class="h-6 w-6 select-none" src="https://img.icons8.com/ffffff/40/menu.png" alt="menu--v1"/>
-                    <img x-show="mobilenavOpen" x-cloak class="h-6 w-6 select-none" src="https://img.icons8.com/ffffff/40/delete-sign.png" alt="menu--v1"/>
-
-                </a>
-            </div>
-        </div>
-
-        <nav class="md:!block bg-gray-800 h-screen w-screen md:h-auto md:w-auto relative z-[1]"
-            x-show="mobilenavOpen"
-            x-cloak
-            x-transition:enter="duration-300 ease-out"
-            x-transition:enter-start="opacity-0 -translate-y-96"
-            x-transition:enter-end="opacity-100 translate-y-0"
-            x-transition:leave="duration-300 ease-out"
-            x-transition:leave-start="opacity-100 translate-y-0"
-            x-transition:leave-end="opacity-0 -translate-y-96"
+        <header class="md:flex items-center justify-between [&>*]:px-8 bg-gray-800 h-20 text-white"
+            x-data="{mobilenavOpen: false}"    
         >
-            <ul class="flex flex-col md:flex-row items-center md:gap-2 navlist gap-8 justify-center h-full md:auto -translate-y-20 md:translate-y-0">
-                <li><a href="#">Home</a></li>   
-                <li><a href="#">Create Post</a></li>
-                <li x-data="{dropdownOpen : false}" class="ml-2 relative">
-                    <a class="flex items-center gap-1 cursor-pointer select-none"
-                        x-on:click ="dropdownOpen = !dropdownOpen" 
-                        @click.outside = "dropdownOpen = false" 
-                        >
-                        <img class="h-8 w-8 rounded-full object-cover bg-teal-200" src="https://img.icons8.com/color/48/circled-user-male-skin-type-1-2--v1.png" alt="circled-user-male-skin-type-1-2--v1"/>
-                        <span>Bart</span>
-                        <span class="ml-0.5">
-                            <i class="fa-solid fa-angle-down text-white  text-sm"
-                            x-bind:class="dropdownOpen ? 'rotate-180 duration-300': 'duration-300'"></i>
-                        </span>
+            <div class="flex justify-between items-center h-20 select-none relative z-[3]">
+                <div aria-label="Website name and Logo">
+                    <a class="flex items-center gap-1" href="#" >
+                        <img class="h-8 -mt-1" src="https://img.icons8.com/ios-glyphs/30/ffffff/fire-heart.png" alt="fire-heart"/>
+                        <span class="">Awesome</span>
                     </a>
-                    <!--Drop down menu-->
-                    <div x-show="dropdownOpen" x-cloak class="bg-white rounded-md text-black p-2 absolute top-[100%] right-0 w-40 shadow z-20" 
-                    x-transition:enter="duration-300 ease-out"
-                    x-transition:enter-start="opacity-0 -translate-y-5 scale-90"
-                    x-transition:enter-end="opacity-100 translate-y-0 scale-100" 
-                    x-transition:leave="duration-300 ease-in-out"
-                    x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-                    x-transition:leave-end="opacity-0  -translate-y-5 scale-90"
-                    >
-                        <ul class="hoverlist [&>li>a]:justify-end">
-                            <li><a href="#"> My Profile</a></li>
-                            <li><a href="#"> Log out</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <section aria-label="Hero Section" class="grid bg-gray-700 text-white text-center bg-[url('https://live.staticflickr.com/65535/49909538937_3255dcf9e7_b.jpg')] bg-no-repeat bg-cover bg-top">
-        <!--overlay element-->
-        <div class="col-start-1 row-start-1 bg-gray-800 w-full h-full bg-opacity-50"></div>
-        <div class="py-24 px-10 col-start-1 row-start-1">
-            <h1 class="font-family font-bold text-6xl mb-4 title-blip-c">Awesome Photos & Captions</h1>
-            <p class="text-lg font-bold mb-5">Share your favourite Photos from Flicker and add a great caption</p>
-            <a class="button" href="#">Get Started</a>
-        </div>
-
-    </section>
-
-
-    <main 
-        x-data="{mobileSidebarOpen: false}"
-    
-        class="grid grid-cols-3 max-w-7xl mx-auto mt-6"
-    >
-        <div class="md:hidden col-span-full mx-auto mb-6">
-            <div 
-                @click="mobileSidebarOpen = ! mobileSidebarOpen"
-
-                class="flex items-center cursor-pointer transition duration-300 active:bg-gray-200 rounded-lg font-bold p-3 px-4 bg-gray-300 shadow-md shadow-gray-500"
-            >
-                <span>Categories</span>
-                <img 
-                    x-bind:class="mobileSidebarOpen ? 'rotate-180 duration-300' : 'duration-300'"
-
-                    class="h-4 w-4 ml-2" src="https://img.icons8.com/small/32/000000/expand-arrow.png"
+                </div>
+        
+                <div arial-label="Mobile Icon" class="md:hidden"
+                @click="mobilenavOpen = !mobilenavOpen"
                 >
+                    <a href="#" class="h-12 w-12 flex items-center justify-center cursor-pointer hover:bg-gray-700 rounded-lg">
+                        <img x-show="!mobilenavOpen" x-cloak class="h-6 w-6 select-none" src="https://img.icons8.com/ffffff/40/menu.png" alt="menu--v1"/>
+                        <img x-show="mobilenavOpen" x-cloak class="h-6 w-6 select-none" src="https://img.icons8.com/ffffff/40/delete-sign.png" alt="menu--v1"/>
+
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!--Posts-->
-        <section 
-            aria-label="Posts" class="col-span-full md:col-span-2 mx-[5%] md:mx-[10%] order-2 md:order-1"
-        >
-            <article class="card post">
-                <header class="flex items-center justify-between px-4">
-                    <h3 class="text-lg font-bold w-[50%] truncate">Little Jedi</h3>
-                    <div class="text-sm text-gray-500">
-                        <span>flicker @</span>
-                        <a href="#" target="_blank" class="hover:underline">John Doe</a>
-                    </div>
-                </header> 
-                <figure class="h-30 overflow-hidden">
-                    <a class="w-full" href="#">
-                        <img  class="object-fit" src="https://live.staticflickr.com/65535/50618365686_36f887ab88_c.jpg" alt="Posts Image">
-                    </a>
-                </figure>
-                <div class="px-4">
-                    <a class="flex items-center gap-1.5" href="#">
-                        <img class="h-10 w-10 rounded-full object-cover" src="https://img.icons8.com/small/96/A9A9A9/happy.png" alt="User Avatar">
-                        <span class="font-bold hover:underline">Lisa</span>
-                    </a>
-                </div>
-
-                <!--Post Content-->
-                <p class="text-5xl px-4 lobester-family">
-                   Jedi Kitty protects the street. 
-                </p>
-
-                <div aria-label="categories"  class="flex items-center gap-1 px-4">
-                    <a class="bg-gray-400 text-white px-3 py-1.5 rounded-full font-semibold hover:bg-gray-600 hover:font-normal" href="#">Animal</a>
-                    <a class="bg-gray-400 text-white px-3 py-1.5 rounded-full font-semibold hover:bg-gray-600 hover:font-normal" href="#">Cute</a>
-                </div>
-
-                <div class="flex items-center justify-between px-4">
-                    <div class="flex items-center gap-1">
-                        <a href="#" class="font-bold hover:underline">Commments</a> 
-                        <span>3</span>
-                    </div>
-
-                    <div class="flex items-center gap-2.5">
-                        <div class="flex items-center gap-1">
-                            <img class="-mt-1" src="https://img.icons8.com/ios-glyphs/30/000000/fire-heart.png" alt="Heart icon">
-                            <span>1</span>
+            <nav class="md:!block bg-gray-800 h-screen w-screen md:h-auto md:w-auto relative z-[1]"
+                x-show="mobilenavOpen"
+                x-cloak
+                x-transition:enter="duration-300 ease-out"
+                x-transition:enter-start="opacity-0 -translate-y-96"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="duration-300 ease-out"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 -translate-y-96"
+            >
+                <ul class="flex flex-col md:flex-row items-center md:gap-2 navlist gap-8 justify-center h-full md:auto -translate-y-20 md:translate-y-0"
+                    <li><a href="#">Home</a></li>   
+                    <li><a href="#">Create Post</a></li>
+                    <li x-data="{dropdownOpen : false}" class="ml-2 relative">
+                        <a class="flex items-center gap-1 cursor-pointer select-none"
+                            x-on:click ="dropdownOpen = !dropdownOpen" 
+                            @click.outside = "dropdownOpen = false" 
+                            >
+                            <img class="h-8 w-8 rounded-full object-cover bg-teal-200" src="https://img.icons8.com/color/48/circled-user-male-skin-type-1-2--v1.png" alt="circled-user-male-skin-type-1-2--v1"/>
+                            <span>Bart</span>
+                            <span class="ml-0.5">
+                                <i class="fa-solid fa-angle-down text-white  text-sm"
+                                x-bind:class="dropdownOpen ? 'rotate-180 duration-300': 'duration-300'"></i>
+                            </span>
+                        </a>
+                        <!--Drop down menu-->
+                        <div x-show="dropdownOpen" x-cloak class="bg-white rounded-md text-black p-2 absolute top-[100%] right-0 w-40 shadow z-20" 
+                        x-transition:enter="duration-300 ease-out"
+                        x-transition:enter-start="opacity-0 -translate-y-5 scale-90"
+                        x-transition:enter-end="opacity-100 translate-y-0 scale-100" 
+                        x-transition:leave="duration-300 ease-in-out"
+                        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                        x-transition:leave-end="opacity-0  -translate-y-5 scale-90"
+                        >
+                            <ul class="hoverlist [&>li>a]:justify-end">
+                                <li><a href="#"> My Profile</a></li>
+                                <li><a href="#"> Log out</a></li>
+                            </ul>
                         </div>
-                        <a class="hover:underline" href="#">Like</a>
-                        <a class="hover:underline" href="#">Edit</a>
-                        <a class="hover:underline" href="#">Delete</a>
-                    </div>
-                </div>
+                    </li>
+                    <li
+                        class="cursor-pointer"
+                        @click="darkModeOn = !darkModeOn"
+                    >
+                        <a>
+                            <span 
+                                x-show="!darkModeOn"
+                                x-cloak
+                                class="text-xl text-gray-500">
+                                <i class="fa-solid fa-moon mr-1"></i> 
+                                <span>Dark</span>
+                            </span>
+                            <span 
+                                x-show="darkModeOn"
+                                x-cloak
+                                class="text-xl text-white">
+                                <i class="fa-regular fa-sun mr-1"></i> <span>Light</span>
+                            </span> 
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-            </article>
+        <section aria-label="Hero Section" class="grid bg-gray-700 text-white text-center bg-[url('https://live.staticflickr.com/65535/49909538937_3255dcf9e7_b.jpg')] bg-no-repeat bg-cover bg-top">
+            <!--overlay element-->
+            <div class="col-start-1 row-start-1 bg-gray-800 w-full h-full bg-opacity-50"></div>
+            <div class="py-24 px-10 col-start-1 row-start-1">
+                <h1 class="font-family font-bold text-6xl mb-4 title-blip-c">Awesome Photos & Captions</h1>
+                <p class="text-lg font-bold mb-5">Share your favourite Photos from Flicker and add a great caption</p>
+                <a class="button" href="#">Get Started</a>
+            </div>
+
         </section>
 
-        <!--Categories-->
-        <aside 
-            x-show="mobileSidebarOpen"
-            x-cloak
-            x-transition:enter="duration-300 ease-out"
-            x-transition:enter-start="opacity-0 -translate-y-10"
-            x-transition:enter-end="opacity-100 translate-y-0"
-            x-transition:leave="duration-300 ease-out"
-            x-transition:leave-start="opacity-100 translate-y-0"
-            x-transition:leave-end="opacity-0 -translate-y-5"
-            class="md:!block col-span-full md:col-span-1 mx-[5%] md:mr-[20%] order-1 md:order-2"
+
+        <main 
+            x-data="{mobileSidebarOpen: false}"
+        
+            class="grid grid-cols-3 max-w-7xl mx-auto mt-6"
         >
-            <section class="card p-4">
-                <h2 class="text-2xl font-bold mb-3">Categories</h2>
-                <ul class="hoverlist flex flex-col gap-y-2">
-                    <li class="highlight">
-                        <a href="#">
-                            <img class="h-9 w-9" src="https://img.icons8.com/fluency-systems-regular/48/landscape.png" alt="landscape"/>
-                            <span>Landscape</span>
+            <div class="md:hidden col-span-full mx-auto mb-6">
+                <div 
+                    @click="mobileSidebarOpen = ! mobileSidebarOpen"
+
+                    class="flex items-center cursor-pointer transition duration-300 active:bg-gray-200 rounded-lg font-bold p-3 px-4 bg-gray-300 shadow-md shadow-gray-500"
+                >
+                    <span>Categories</span>
+                    <img 
+                        x-bind:class="mobileSidebarOpen ? 'rotate-180 duration-300' : 'duration-300'"
+
+                        src="https://img.icons8.com/small/32/000000/expand-arrow.png"
+
+                        class="h-4 w-4 ml-2"
+                    >
+                </div>
+            </div>
+
+            <!--Posts-->
+            <section 
+                aria-label="Posts" class="col-span-full md:col-span-2 mx-[5%] md:mx-[10%] order-2 md:order-1"
+            >
+                <article class="card post dark:bg-gray-900">
+                    <header class="flex items-center justify-between px-4 dark:text-white">
+                        <h3 class="text-lg font-bold w-[50%] truncate">Little Jedi</h3>
+                        <div class="text-sm text-gray-500 dark:text-white">
+                            <span>flicker @</span>
+                            <a href="#" target="_blank" class="hover:underline">John Doe</a>
+                        </div>
+                    </header> 
+                    <figure class="h-30 overflow-hidden">
+                        <a class="w-full" href="#">
+                            <img  class="object-fit" src="https://live.staticflickr.com/65535/50618365686_36f887ab88_c.jpg" alt="Posts Image">
                         </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img class="h-9 w-9" src="https://img.icons8.com/ios/50/conference-call--v1.png" alt="conference-call--v1"/>
-                            <span>People</span>
+                    </figure>
+                    <div class="px-4">
+                        <a class="flex items-center gap-1.5 dark:text-white" href="#">
+                            <img 
+                                x-bind:src="darkModeOn ? 'https://img.icons8.com/small/96/ffffff/happy.png': 'https://img.icons8.com/small/96/A9A9A9/happy.png'"
+                            
+                                class="h-10 w-10 rounded-full object-cover" src="https://img.icons8.com/small/96/A9A9A9/happy.png" alt="User Avatar"
+                            >
+                            <span class="font-bold hover:underline">Lisa</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img class="h-9 w-9" src="https://img.icons8.com/ios/50/dog--v1.png" alt="dog--v1"/>
-                            <span>Animal</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img class="h-9 w-9" src="https://img.icons8.com/material-outlined/48/dashboard-layout.png" alt="dashboard-layout"/>
-                            <span>Abstract</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img class="h-9 w-9" src="https://img.icons8.com/ios-filled/50/black-and-white.png" alt="black-and-white"/>
-                            <span>Black & White</span>
-                        </a>
-                    </li>
-                </ul>
+                    </div>
+
+                    <!--Post Content-->
+                    <p class="text-5xl px-4 lobester-family dark:text-white">
+                    Jedi Kitty protects the street. 
+                    </p>
+
+                    <div aria-label="categories"  class="flex items-center gap-1 px-4">
+                        <a class="bg-gray-400 text-white px-3 py-1.5 rounded-full font-semibold hover:bg-gray-600 hover:font-normal" href="#">Animal</a>
+                        <a class="bg-gray-400 text-white px-3 py-1.5 rounded-full font-semibold hover:bg-gray-600 hover:font-normal" href="#">Cute</a>
+                    </div>
+
+                    <div class="flex items-center justify-between px-4 dark:text-white">
+                        <div class="flex items-center gap-1">
+                            <a href="#" class="font-bold hover:underline">Commments</a> 
+                            <span>3</span>
+                        </div>
+
+                        <div class="flex items-center gap-2.5">
+                            <div class="flex items-center gap-1">
+                                <img 
+                                    :src="darkModeOn ? 'https://img.icons8.com/ios-glyphs/30/ffffff/fire-heart.png' : 'https://img.icons8.com/ios-glyphs/30/000000/fire-heart.png'"
+                                    
+                                    class="-mt-1" 
+                                    src="https://img.icons8.com/ios-glyphs/30/000000/fire-heart.png" alt="Like"
+                                >
+                                <span>1</span>
+                            </div>
+                            <a class="hover:underline" href="#">Like</a>
+                            <a class="hover:underline" href="#">Edit</a>
+                            <a class="hover:underline" href="#">Delete</a>
+                        </div>
+                    </div>
+
+                </article>
             </section>
 
-            <section class="card p-4">
-                <h2>Top Photos</h2>
-                <ul class="hoverlist">
-                    <li>
-                        <a href="">
-                            <img class="h-9 w-9 rounded-lg object-cover mr-3 " src="https://img.icons8.com/pastel-glyph/50/house.png" alt="house"/>
-                            <img class="h-6 w-6 rounded-full object-cover mr-0.5" src="https://img.icons8.com/ios/50/happy--v1.png" alt="happy--v1"/>
-                            <span class="font-bold text-sm mr-1">Homer</span>
-                            <span class="font-light text-sm text-gray-500">(5 Likes)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img class="h-9 w-9 rounded-lg object-cover mr-3 " src="https://img.icons8.com/pastel-glyph/50/house.png" alt="house"/>
-                            <img class="h-6 w-6 rounded-full object-cover mr-0.5" src="https://img.icons8.com/ios/50/happy--v1.png" alt="happy--v1"/>
-                            <span class="font-bold text-sm mr-1">Homer</span>
-                            <span class="text-sm font-light text-gray-500">(5 Likes)</span>
-                        </a>
-                    </li>
-                </ul>
-            </section>
+            <!--Categories-->
+            <aside 
+                x-show="mobileSidebarOpen"
+                x-cloak
+                x-transition:enter="duration-300 ease-out"
+                x-transition:enter-start="opacity-0 -translate-y-10"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="duration-300 ease-out"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 -translate-y-5"
+                class="md:!block col-span-full md:col-span-1 mx-[5%] md:mr-[20%] order-1 md:order-2"
+            >
+                <section class="card p-4 dark:bg-gray-900 dark:text-white">
+                    <h2 class="text-2xl font-bold mb-3">Categories</h2>
+                    <ul class="hoverlist flex flex-col gap-y-2">
+                        <li class="highlight dark:text-gray-900">
+                            <a href="#" class="dark:hover:text-gray-900">
+                                <img 
+                                    class="h-9 w-9" 
+                                    src="https://img.icons8.com/fluency-systems-regular/48/landscape.png" 
+                                    alt="landscape"
+                                />
+                                <span>Landscape</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a 
+                                x-data="{ iconUrl:'', orgIcon: ''}"
+                                x-effect="iconUrl = darkModeOn ? 'https://img.icons8.com/ios/50/ffffff/conference-call--v1.png' : 'https://img.icons8.com/ios/50/conference-call--v1.png'"
+                                @mouseenter="orgIcon=iconUrl; iconUrl='https://img.icons8.com/ios/50/conference-call--v1.png'"
+                                @mouseleave="iconUrl=orgIcon;"
+                                href="#" class="dark:hover:text-gray-900">
+                                <img 
+                                    :src="iconUrl"
+                                    class="h-9 w-9" 
+                                    alt="conference-call--v1"
+                                />
+                                <span>People</span>
+                         </a>
+                         
+                        </li>
+                        <li>
+                            <a 
+                                x-data="{ iconUrl:'', orgIcon: ''}"
+                                x-effect="iconUrl = darkModeOn ? 'https://img.icons8.com/ios/50/ffffff/dog--v1.png' : 'https://img.icons8.com/ios/50/000000/dog--v1.png'"
+                                @mouseenter="orgIcon=iconUrl; iconUrl='https://img.icons8.com/ios/50/dog--v1.png'"
+                                @mouseleave="iconUrl=orgIcon;"
+                                href="#" 
+                                class="dark:hover:text-gray-900"
+                            >
+                                
+                                <img 
+                                    :src="iconUrl"
+                                    class="h-9 w-9" 
+                                    src="https://img.icons8.com/ios/50/dog--v1.png" alt="dog--v1"
+                                    />
+                                <span>Animal</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a 
+                                x-data="{ iconUrl:'', orgIcon: ''}"
+                                x-effect="iconUrl = darkModeOn ? 'https://img.icons8.com/material-outlined/48/ffffff/dashboard-layout.png' : 'https://img.icons8.com/material-outlined/48/dashboard-layout.png'"
+                                @mouseenter="orgIcon=iconUrl; iconUrl='https://img.icons8.com/material-outlined/48/dashboard-layout.png'"
+                                @mouseleave="iconUrl=orgIcon;"
+                                href="#" 
+                                class="dark:hover:text-gray-900">
+                                <img class="h-9 w-9" 
+                                    :src="iconUrl"
+                                    src="https://img.icons8.com/material-outlined/48/dashboard-layout.png" alt="dashboard-layout"
+                                />
+                                <span>Abstract</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a 
+                                x-data="{ iconUrl:'', orgIcon: ''}"
+                                x-effect="iconUrl = darkModeOn ? 'https://img.icons8.com/ios-filled/50/ffffff/black-and-white.png' : 'https://img.icons8.com/ios-filled/50/black-and-white.png'"
+                                @mouseenter="orgIcon=iconUrl; iconUrl='https://img.icons8.com/ios-filled/50/black-and-white.png'"
+                                @mouseleave="iconUrl=orgIcon;"
+                                href="#"
+                                class="dark:hover:text-gray-900">
+                                <img 
+                                    :src="iconUrl"
+                                    class="h-9 w-9" 
+                                    src="https://img.icons8.com/ios-filled/50/black-and-white.png" 
+                                    alt="black-and-white"
+                                />
+                                <span class="">Black & White</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
 
-            <section class="card p-4">
-                <h2>Top Captions</h2>
-                <ul class="hoverlist">
-                    <li>
-                        <a href="">
-                            <img class="h-8 w-8 rounded-full object-cover mr-1" src="https://img.icons8.com/ios/50/happy--v1.png" alt="happy--v1"/>
-                            <span class="font-bold text-sm mr-1">Homer</span>
-                            <span class="font-light text-sm text-gray-500">(5 Likes)</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img class="h-8 w-8 rounded-full object-cover mr-1" src="https://img.icons8.com/ios/50/happy--v1.png" alt="happy--v1"/>
-                            <span class="font-bold text-sm mr-1">Homer</span>
-                            <span class="text-sm font-light text-gray-500">(5 Likes)</span>
-                        </a>
-                    </li>
-                </ul>
-            </section>
+                <section class="card p-4 dark:bg-gray-900 dark:text-white">
+                    <h2>Top Photos</h2>
+                    <ul class="hoverlist dark:text-white">
+                        <li>
+                            <a 
+                                x-data="{ iconUrl1:'', orgIcon1: '', iconUrl2:'', orgIcon2:''}"
+                                x-effect="
+                                    iconUrl1 = darkModeOn ? 'https://img.icons8.com/pastel-glyph/50/ffffff/house.png' : 'https://img.icons8.com/pastel-glyph/50/house.png'; 
+                                    iconUrl2 = darkModeOn ? 'https://img.icons8.com/ios/50/ffffff/happy--v1.png' : 'https://img.icons8.com/ios/50/happy--v1.png'"
+                                @mouseenter="orgIcon1=iconUrl1; iconUrl1='https://img.icons8.com/pastel-glyph/50/house.png'; 
+                                orgIcon2=iconUrl2; iconUrl2='https://img.icons8.com/ios/50/happy--v1.png'"
+                                @mouseleave="iconUrl1=orgIcon1; iconUrl2=orgIcon2"
+                                href="#" 
+                                class="dark:hover:text-gray-900">
+                                <img 
+                                    :src="iconUrl1"
+                                    class="h-9 w-9 rounded-lg object-cover mr-3 " src="https://img.icons8.com/pastel-glyph/50/house.png" alt="house"
+                                />
+                                <img 
+                                    :src="iconUrl2"
+                                    class="h-6 w-6 rounded-full object-cover mr-0.5" src="https://img.icons8.com/ios/50/happy--v1.png" alt="happy--v1"
+                                />
+                                <span class="font-bold text-sm mr-1">Homer</span>
+                                <span class="font-light text-sm text-gray-500">(5 Likes)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a 
+                                x-data="{ iconUrl1:'', orgIcon1: '', iconUrl2:'', orgIcon2:''}"
+                                x-effect="
+                                    iconUrl1 = darkModeOn ? 'https://img.icons8.com/pastel-glyph/50/ffffff/house.png' : 'https://img.icons8.com/pastel-glyph/50/house.png'; 
+                                    iconUrl2 = darkModeOn ? 'https://img.icons8.com/ios/50/ffffff/happy--v1.png' : 'https://img.icons8.com/ios/50/happy--v1.png'"
+                                @mouseenter="orgIcon1=iconUrl1; iconUrl1='https://img.icons8.com/pastel-glyph/50/house.png'; 
+                                orgIcon2=iconUrl2; iconUrl2='https://img.icons8.com/ios/50/happy--v1.png'"
+                                @mouseleave="iconUrl1=orgIcon1; iconUrl2=orgIcon2"
+                                href="#" 
+                                class="dark:hover:text-gray-900">
+                                <img 
+                                    :src="iconUrl1"
+                                    class="h-9 w-9 rounded-lg object-cover mr-3 " src="https://img.icons8.com/pastel-glyph/50/house.png" alt="house"
+                                />
+                                <img 
+                                    :src="iconUrl2"
+                                    class="h-6 w-6 rounded-full object-cover mr-0.5" src="https://img.icons8.com/ios/50/happy--v1.png" alt="happy--v1"
+                                />
+                                <span class="font-bold text-sm mr-1">Homer</span>
+                                <span class="font-light text-sm text-gray-500">(5 Likes)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
 
-        </aside>
-    </main>
+                <section class="card p-4 dark:bg-gray-900 dark:text-white">
+                    <h2>Top Captions</h2>
+                    <ul class="hoverlist">
+                        <li>
+                            <a 
+                                x-data="{ iconUrl:'', orgIcon: ''}"
+                                x-effect="
+                                    iconUrl = darkModeOn ? 'https://img.icons8.com/ios/50/ffffff/happy--v1.png' : 'https://img.icons8.com/ios/50/happy--v1.png'"
+                                @mouseenter="orgIcon=iconUrl; iconUrl='https://img.icons8.com/ios/50/happy--v1.png'"
+                                @mouseleave="iconUrl=orgIcon"
+                                href="" class="dark:hover:text-gray-900">
+                                <img 
+                                    :src="iconUrl"
+                                    class="h-8 w-8 rounded-full object-cover mr-1" src="https://img.icons8.com/ios/50/happy--v1.png" alt="happy--v1"/>
+                                <span class="font-bold text-sm mr-1">Homer</span>
+                                <span class="font-light text-sm text-gray-500">(5 Likes)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a 
+                                x-data="{ iconUrl:'', orgIcon: ''}"
+                                x-effect="
+                                    iconUrl = darkModeOn ? 'https://img.icons8.com/ios/50/ffffff/happy--v1.png' : 'https://img.icons8.com/ios/50/happy--v1.png'"
+                                @mouseenter="orgIcon=iconUrl; iconUrl='https://img.icons8.com/ios/50/happy--v1.png'"
+                                @mouseleave="iconUrl=orgIcon"
+                                href="" class="dark:hover:text-gray-900">
+                                <img 
+                                    :src="iconUrl"
+                                    class="h-8 w-8 rounded-full object-cover mr-1" src="https://img.icons8.com/ios/50/happy--v1.png" alt="happy--v1"/>
+                                <span class="font-bold text-sm mr-1">Homer</span>
+                                <span class="font-light text-sm text-gray-500">(5 Likes)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
 
- 
+            </aside>
+        </main>
+    </div>
+
 </body>
 </html>
